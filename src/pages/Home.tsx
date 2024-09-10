@@ -1,9 +1,12 @@
-import Products from "./Products";
+import HeroSection from "@/components/HeroSection";
+
+import Categories from "@/components/Categories ";
 
 const Home = () => {
   return (
     <div>
-      <Products></Products>
+      <HeroSection></HeroSection>
+      <Categories></Categories>
     </div>
   );
 };
