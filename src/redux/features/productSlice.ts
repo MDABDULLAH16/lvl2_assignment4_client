@@ -1,15 +1,38 @@
-import { createSlice } from "@reduxjs/toolkit";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = {
+interface ProductState {
+  name: string;
+  price: number;
+  category: string;
+  description: string;
+  stock: number;
+  images: string;
+  benefits: string;
+}
+
+const initialState: ProductState = {
   name: "",
   price: 0,
-  category: [],
+  category: "",
   description: "",
   stock: 0,
   images: "",
+  benefits: "",
 };
-export const productSlice = createSlice({
+
+const productSlice = createSlice({
   name: "product",
   initialState,
-  reducers: {},
+  reducers: {
+    setProductDetails(state, action: PayloadAction<ProductState>) {
+      return action.payload;
+    },
+    clearProductDetails(state) {
+      return initialState;
+    },
+  },
 });
+
+export const { setProductDetails, clearProductDetails } = productSlice.actions;
+export default productSlice.reducer;

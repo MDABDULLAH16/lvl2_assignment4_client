@@ -30,6 +30,10 @@ export const router = createBrowserRouter([
         element: <ProductDetails />,
       },
       {
+        path: "/product-details/:_id",
+        element: <ProductDetails />,
+      },
+      {
         path: "/cart",
         element: <Cart />,
       },

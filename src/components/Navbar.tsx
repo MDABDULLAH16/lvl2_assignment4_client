@@ -50,12 +50,12 @@ const Navbar: React.FC = () => {
             >
               Product Management
             </Link>
-            <Link
+            {/* <Link
               to="/product-details"
               className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
             >
               Product Details
-            </Link>
+            </Link> */}
             <Link
               to="/cart"
               className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
@@ -126,12 +126,12 @@ const Navbar: React.FC = () => {
             >
               Product Management
             </Link>
-            <Link
+            {/* <Link
               to="/product-details"
               className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
             >
               Product Details
-            </Link>
+            </Link> */}
             <Link
               to="/cart"
               className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"

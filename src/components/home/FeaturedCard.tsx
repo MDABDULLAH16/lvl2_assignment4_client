@@ -1,7 +1,9 @@
 import React from "react";
 import { TProductProps } from "./Card";
+import { Link } from "react-router-dom";
 
 const FeaturedCard: React.FC<TProductProps> = ({
+  _id,
   name,
   images,
   category,
@@ -24,6 +26,14 @@ const FeaturedCard: React.FC<TProductProps> = ({
           <span className="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-lg">
             {category}
           </span>
+          <div className="card-actions">
+            <Link
+              to={`/product-details/${_id}`}
+              className="bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white  py-2 px-3 rounded-lg shadow-inner focus:outline-none transition ease-in-out duration-150"
+            >
+              See Details
+            </Link>
+          </div>
         </div>
       </div>
     </div>
