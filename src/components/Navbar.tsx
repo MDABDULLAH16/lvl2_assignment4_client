@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import logo2 from "../assets/logo2.png";
 
 const Navbar: React.FC = () => {
@@ -8,6 +8,14 @@ const Navbar: React.FC = () => {
   // Toggle mobile menu visibility
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+  const location = useLocation();
+
+  const handleNavigation = (path: string) => {
+    if (location.pathname !== path) {
+      // Only navigate if the current page is different from the target path
+      window.location.href = path;
+    }
   };
 
   return (
@@ -30,6 +38,7 @@ const Navbar: React.FC = () => {
               Home
             </Link>
             <Link
+              onClick={() => handleNavigation("/products")}
               to="/products"
               className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
             >

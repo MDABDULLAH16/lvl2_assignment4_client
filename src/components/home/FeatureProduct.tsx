@@ -22,17 +22,20 @@ const FeatureProduct: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center h-40">
-        <div className="animate-spin rounded-full h-10 w-10 border-t-4 border-blue-500"></div>
-        <span className="ml-3 text-lg text-gray-600">Loading products...</span>
+      <div className="flex items-center justify-center h-screen bg-gray-100">
+        <div className="text-2xl font-semibold text-gray-700 animate-pulse">
+          Loading Products...
+        </div>
       </div>
     );
   }
 
   if (isError) {
     return (
-      <div className="text-red-500 text-center mt-4">
-        Failed to load products
+      <div className="flex items-center justify-center bg-red-50">
+        <div className="text-2xl font-semibold text-red-600">
+          Error: Failed to load Featured Product
+        </div>
       </div>
     );
   }
@@ -42,20 +45,25 @@ const FeatureProduct: React.FC = () => {
   };
 
   return (
-    <div className="bg-gray-50 py-10">
-      <div className="container mx-auto">
+    <div className="bg-gray-100 py-14">
+      <div className="container mx-auto px-6">
+        {/* Section Heading */}
+        <h2 className="text-4xl font-bold text-center text-gray-800 mb-12">
+          Featured Products
+        </h2>
+
         {/* Featured Products Grid */}
-        <div className="grid gap-8 md:grid-cols-3 sm:grid-cols-2">
+        <div className="grid gap-8 lg:grid-cols-3 sm:grid-cols-2">
           {featuredProducts.map((product: TProductProps) => (
             <FeaturedCard {...product} key={product.description} />
           ))}
         </div>
 
         {/* Show More Button */}
-        <div className="flex justify-center mt-8">
+        <div className="flex justify-center mt-10">
           <button
             onClick={handleShowMore}
-            className="bg-blue-500 text-white font-semibold px-6 py-3 rounded-full hover:bg-blue-600 transition duration-300"
+            className="bg-blue-600 text-white font-semibold px-8 py-4 rounded-full hover:bg-blue-700 transition-all duration-300 transform hover:scale-105"
           >
             Show More
           </button>

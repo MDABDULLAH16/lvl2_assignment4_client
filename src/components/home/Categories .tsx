@@ -31,7 +31,7 @@ const Categories: React.FC = () => {
 
   if (isError) {
     return (
-      <div className="flex items-center justify-center h-screen bg-red-50">
+      <div className="flex items-center justify-center  bg-red-50">
         <div className="text-2xl font-semibold text-red-600">
           Error: Failed to load categories
         </div>

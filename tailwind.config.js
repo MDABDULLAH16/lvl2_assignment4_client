@@ -8,7 +8,8 @@ export default {
     extend: {
       backgroundImage: {
         'primary-gradient': 'linear-gradient(30deg,#DC02C3,#5C53F3)'
-      }
+      },
+      
     },
   },
   plugins: [
