@@ -4,9 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setCategory } from "@/redux/features/categorySlice";
 
+// Define the structure of the product data
 interface Product {
   category: string;
-  images: string; // Array of image URLs for the product
+  images: string; // Single image URL as a string
 }
 
 const Categories: React.FC = () => {
@@ -38,15 +39,26 @@ const Categories: React.FC = () => {
     );
   }
 
+  // Helper function to get a random product's image from the array of products in each category
+  const getRandomImage = (images: string[]) => {
+    return images[Math.floor(Math.random() * images.length)];
+  };
+
+  // Group products by category and collect their image URLs
   const categories = products?.data
     ? (Array.from(
-        products?.data.reduce((acc: Map<string, string>, product: Product) => {
-          if (!acc.has(product?.category)) {
-            acc.set(product?.category, product?.images[0]); // Use the first image of the first product in each category
-          }
-          return acc;
-        }, new Map<string, string>())
-      ) as [string, string][]) // Explicitly cast to tuple [category, image] array
+        products?.data.reduce(
+          (acc: Map<string, string[]>, product: Product) => {
+            if (!acc.has(product.category)) {
+              acc.set(product.category, [product.images]); // Start with the first product's image
+            } else {
+              acc.get(product.category)?.push(product.images); // Add subsequent product images if the category already exists
+            }
+            return acc;
+          },
+          new Map<string, string[]>()
+        )
+      ) as [string, string[]][]) // Explicitly cast to tuple [category, images[]] array
     : [];
 
   const handleCategoryClick = (category: string) => {
@@ -73,7 +85,7 @@ const Categories: React.FC = () => {
               <CategoryCard
                 key={index}
                 title={category}
-                image={images}
+                image={getRandomImage(images)} // Get a random image for this category
                 onClick={() => handleCategoryClick(category)}
               />
             ))
