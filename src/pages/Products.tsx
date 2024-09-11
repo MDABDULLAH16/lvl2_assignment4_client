@@ -90,14 +90,14 @@ const Products: React.FC = () => {
   return (
     <div className="container mx-auto">
       {/* Search, Filter, and Sorting Controls */}
-      <div className="mb-4 flex flex-col md:flex-row md:space-x-4 space-y-2 md:space-y-0">
+      <div className="mb-4 flex flex-col md:flex-row justify-around  m-4  space-y-2 md:space-y-0">
         {/* Search Input */}
         <input
           type="text"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           placeholder="Search products by name"
-          className="p-3 border border-gray-300 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200"
+          className="p-3 border w-2/4  border-gray-300 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200"
         />
 
         {/* Category Filter Dropdown */}

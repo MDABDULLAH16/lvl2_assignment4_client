@@ -12,7 +12,7 @@ export const baseApi = createApi({
     }),
     getSingleProduct: builder.query({
       query: (_id) => ({
-        url: `/products/${_id}`, // Construct the URL using the product ID
+        url: `/products/${_id}`,
         method: "GET",
       }),
     }),
@@ -20,14 +20,23 @@ export const baseApi = createApi({
       query: (name) => ({
         url: `/products`,
         method: "GET",
-        params: { name }, // Pass name as a query parameter
+        params: { name },
+      }),
+    }),
+    updateProduct: builder.mutation({
+      query: ({ _id, updatedProduct }) => ({
+        url: `/products/${_id}`, // Use product ID to specify which product to update
+        method: "PATCH",
+        body: updatedProduct, // Send the updated product data in the body
       }),
     }),
   }),
 });
 
+// Export hooks for usage in functional components
 export const {
   useGetAllProductQuery,
   useGetSingleProductQuery,
   useSearchByProductNameQuery,
+  useUpdateProductMutation, // Mutation hook for updating product
 } = baseApi;
