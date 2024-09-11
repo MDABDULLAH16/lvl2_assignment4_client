@@ -1,6 +1,5 @@
 import React from "react";
 
-// Define props with title and image
 interface CategoryCardProps {
   title: string;
   image: string;
@@ -15,14 +14,18 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
   return (
     <div
       onClick={onClick}
-      className="cursor-pointer border p-4 rounded-lg shadow hover:shadow-lg"
+      className="cursor-pointer bg-white border p-4 rounded-lg shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl group"
     >
-      <img
-        src={image}
-        alt={title}
-        className="w-full h-40 object-cover rounded-lg"
-      />
-      <h3 className="text-center mt-2 text-lg font-bold">{title}</h3>
+      <div className="overflow-hidden rounded-lg">
+        <img
+          src={image}
+          alt={title}
+          className="w-full h-40 object-cover rounded-lg transform transition duration-300 group-hover:scale-110"
+        />
+      </div>
+      <h3 className="text-center mt-4 text-xl font-bold text-gray-800 group-hover:text-blue-500">
+        {title}
+      </h3>
     </div>
   );
 };
