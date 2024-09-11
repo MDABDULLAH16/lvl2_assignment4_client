@@ -1,4 +1,5 @@
 import App from "@/App";
+import AboutUs from "@/pages/AboutUs";
 import Cart from "@/pages/Cart";
 import Checkout from "@/pages/Checkout";
 import Home from "@/pages/Home";
@@ -43,7 +44,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/about-us",
-        element: <Cart />,
+        element: <AboutUs />,
       },
     ],
   },

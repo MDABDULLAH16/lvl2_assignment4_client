@@ -1,52 +1,76 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   useGetAllProductQuery,
   useSearchByProductNameQuery,
 } from "@/redux/api/api";
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
 import Card, { TProductProps } from "@/components/home/Card";
-import { JSX } from "react/jsx-runtime";
+import { useLocation } from "react-router-dom";
 
 const Products: React.FC = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [categories, setCategories] = useState<string[]>([]);
+  const [sortOrder, setSortOrder] = useState<string | null>(null);
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
-  // Fetch all products if no search term is entered
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const categoryFromUrl = queryParams.get("category");
+
+  // Fetch all products
   const {
     data: allProducts,
-    isLoading: isLoadingAll,
-    isError: isErrorAll,
+    isLoading: allProductsLoading,
+    isError: allProductsError,
   } = useGetAllProductQuery(undefined);
 
-  // Fetch products by name when a search term is provided
+  // Fetch search results if search term is provided
   const {
-    data: searchedProducts,
-    isLoading: isLoadingSearch,
-    isError: isErrorSearch,
-  } = useSearchByProductNameQuery(searchTerm, {
-    skip: !searchTerm, // Skip querying if searchTerm is empty
-  });
+    data: searchResults,
+    isLoading: searchLoading,
+    isError: searchError,
+  } = useSearchByProductNameQuery(searchTerm || "");
 
-  // Get the selected category from the Redux store
-  const selectedCategory = useSelector(
-    (state: RootState) => state?.category?.selectedCategory
-  );
+  // Combine search results with all products
+  const products = searchTerm ? searchResults?.data : allProducts?.data;
 
-  // Filter products based on the selected category and search results
-  const products = searchTerm ? searchedProducts?.data : allProducts?.data;
+  useEffect(() => {
+    if (allProducts?.data) {
+      const uniqueCategories = [
+        ...new Set(
+          allProducts.data.map((product: TProductProps) => product.category)
+        ),
+      ];
+      setCategories(uniqueCategories);
+    }
 
-  const filteredProducts = selectedCategory
-    ? products?.filter(
-        (product: { category: string }) => product.category === selectedCategory
-      )
-    : products;
+    // Set the default selected category from URL query parameter
+    if (categoryFromUrl) {
+      setSelectedCategory(categoryFromUrl);
+    }
+  }, [allProducts, categoryFromUrl]);
 
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
+  const sortProducts = (productsToSort: TProductProps[]) => {
+    if (sortOrder === "asc") {
+      return productsToSort.sort((a, b) => a.price - b.price);
+    } else if (sortOrder === "desc") {
+      return productsToSort.sort((a, b) => b.price - a.price);
+    }
+    return productsToSort;
   };
 
-  // Loading and Error handling
-  if (isLoadingAll || isLoadingSearch) {
+  const filteredProducts = products?.filter((product: TProductProps) =>
+    selectedCategory ? product.category === selectedCategory : true
+  );
+
+  const sortedProducts = sortProducts(filteredProducts || []);
+
+  const clearFilters = () => {
+    setSelectedCategory(null);
+    setSortOrder(null);
+    setSearchTerm("");
+  };
+
+  if (allProductsLoading || searchLoading) {
     return (
       <div className="flex justify-center items-center h-40">
         <div className="animate-spin rounded-full h-10 w-10 border-t-4 border-blue-500"></div>
@@ -55,7 +79,7 @@ const Products: React.FC = () => {
     );
   }
 
-  if (isErrorAll || isErrorSearch) {
+  if (allProductsError || searchError) {
     return (
       <div className="text-red-500 text-center mt-4">
         Failed to load products
@@ -64,20 +88,62 @@ const Products: React.FC = () => {
   }
 
   return (
-    <div>
-      <div className="mb-6">
+    <div className="container mx-auto">
+      {/* Search, Filter, and Sorting Controls */}
+      <div className="mb-4 flex flex-col md:flex-row md:space-x-4 space-y-2 md:space-y-0">
+        {/* Search Input */}
         <input
           type="text"
           value={searchTerm}
-          onChange={handleSearchChange}
-          placeholder="Search by product name"
-          className="border p-2 w-full md:w-1/2 lg:w-1/3"
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder="Search products by name"
+          className="p-3 border border-gray-300 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200"
         />
+
+        {/* Category Filter Dropdown */}
+        <select
+          value={selectedCategory || ""}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+          className="p-3 border border-gray-300 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200"
+        >
+          <option value="">All Categories</option>
+          {categories.map((category) => (
+            <option key={category} value={category}>
+              {category}
+            </option>
+          ))}
+        </select>
+
+        {/* Sorting Options */}
+        <select
+          value={sortOrder || ""}
+          onChange={(e) => setSortOrder(e.target.value)}
+          className="p-3 border border-gray-300 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200"
+        >
+          <option value="">Sort by Price</option>
+          <option value="asc">Price: Low to High</option>
+          <option value="desc">Price: High to Low</option>
+        </select>
+
+        {/* Clear Filter Button */}
+        <button
+          onClick={clearFilters}
+          className="p-3 bg-red-500 text-white rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 transition-all duration-200"
+        >
+          Clear Filters
+        </button>
       </div>
-      <div className="grid md:grid-cols-3 sm:grid-cols-1 space-y-4">
-        {filteredProducts?.map(
+
+      {/* Product Grid */}
+      <div className="grid md:grid-cols-3 sm:grid-cols-2 lg:grid-cols-4 m-4 gap-8 animate-fade-in">
+        {sortedProducts?.map(
           (product: JSX.IntrinsicAttributes & TProductProps) => (
-            <Card key={product._id} {...product} />
+            <div
+              key={product.name}
+              className="transform transition-transform duration-300 hover:scale-105"
+            >
+              <Card key={product.name} {...product} />
+            </div>
           )
         )}
       </div>

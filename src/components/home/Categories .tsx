@@ -1,3 +1,4 @@
+import React from "react";
 import { useGetAllProductQuery } from "@/redux/api/api";
 import CategoryCard from "./CategoryCard";
 import { useNavigate } from "react-router-dom";
@@ -31,7 +32,7 @@ const Categories: React.FC = () => {
 
   if (isError) {
     return (
-      <div className="flex items-center justify-center  bg-red-50">
+      <div className="flex items-center justify-center bg-red-50">
         <div className="text-2xl font-semibold text-red-600">
           Error: Failed to load categories
         </div>
@@ -39,31 +40,28 @@ const Categories: React.FC = () => {
     );
   }
 
-  // Helper function to get a random product's image from the array of products in each category
+  // Helper function to get a random product's image from the array of images in each category
   const getRandomImage = (images: string[]) => {
     return images[Math.floor(Math.random() * images.length)];
   };
 
   // Group products by category and collect their image URLs
-  const categories = products?.data
-    ? (Array.from(
-        products?.data.reduce(
-          (acc: Map<string, string[]>, product: Product) => {
-            if (!acc.has(product.category)) {
-              acc.set(product.category, [product.images]); // Start with the first product's image
-            } else {
-              acc.get(product.category)?.push(product.images); // Add subsequent product images if the category already exists
-            }
-            return acc;
-          },
-          new Map<string, string[]>()
-        )
-      ) as [string, string[]][]) // Explicitly cast to tuple [category, images[]] array
+  const categoryImages = products?.data
+    ? Array.from(
+        products.data.reduce((acc: Map<string, string[]>, product: Product) => {
+          if (!acc.has(product.category)) {
+            acc.set(product.category, [product.images]); // Start with the first product's image
+          } else {
+            acc.get(product.category)?.push(product.images); // Add subsequent product images if the category already exists
+          }
+          return acc;
+        }, new Map<string, string[]>())
+      )
     : [];
 
   const handleCategoryClick = (category: string) => {
     dispatch(setCategory(category)); // Set the selected category in the Redux store
-    navigate("/products"); // Navigate to the Products page
+    navigate(`/products?category=${encodeURIComponent(category)}`); // Navigate to the Products page with the selected category as a query parameter
   };
 
   return (
@@ -79,9 +77,9 @@ const Categories: React.FC = () => {
 
       {/* Category Section */}
       <section className="container mx-auto px-4 py-8">
-        <div className="grid gap-8 md:grid-cols-3 sm:grid-cols-1">
-          {categories.length > 0 ? (
-            categories.map(([category, images], index) => (
+        <div className="grid gap-8  md:grid-cols-3 sm:grid-cols-2">
+          {categoryImages?.length > 0 ? (
+            categoryImages?.map(([category, images], index) => (
               <CategoryCard
                 key={index}
                 title={category}

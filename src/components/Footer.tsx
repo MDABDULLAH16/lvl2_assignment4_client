@@ -5,9 +5,9 @@ import { FaFacebook, FaLinkedin, FaYoutube } from "react-icons/fa";
 const Footer = () => {
   return (
     <footer className="bg-gray-800 text-white py-10 px-6">
-      <div className="container mx-auto flex flex-wrap justify-between">
+      <div className="container mx-auto grid md:grid-cols-4 sm:grid-cols-2  w-full">
         {/* Footer Logo and Info */}
-        <div className="w-full md:w-1/4 mb-6 md:mb-0">
+        <div className="w-full mx-auto mb-6 md:mb-0">
           <img src={logo2} alt="FitGearHub" className="w-32 mb-4" />
           <p className="font-semibold text-lg mb-2">ARS Limited</p>
           <p className="text-sm mb-4">Providing reliable tech since 2020</p>
@@ -17,7 +17,7 @@ const Footer = () => {
         </div>
 
         {/* Important Pages */}
-        <div className="w-full md:w-1/4 mb-6 md:mb-0">
+        <div className="w-full mx-auto  mb-6 md:mb-0">
           <h6 className="text-lg font-semibold mb-3">Important Pages</h6>
           <ul className="space-y-2">
             <li>
@@ -49,7 +49,7 @@ const Footer = () => {
         </div>
 
         {/* For Contact */}
-        <div className="w-full md:w-1/4 mb-6 md:mb-0">
+        <div className="w-full mx-auto  mb-6 md:mb-0">
           <h6 className="text-lg font-semibold mb-3">For Contact</h6>
           <ul className="space-y-2">
             <li className="flex items-center">
@@ -83,7 +83,7 @@ const Footer = () => {
         </div>
 
         {/* Legal */}
-        <div className="w-full md:w-1/4 mb-6 md:mb-0">
+        <div className="w-full mx-auto mb-6 md:mb-0">
           <h6 className="text-lg font-semibold mb-3">Legal</h6>
           <ul className="space-y-2">
             <li>

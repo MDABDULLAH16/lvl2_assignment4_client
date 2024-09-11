@@ -14,7 +14,7 @@ const Card = ({ _id, name, images, price, description }: TProductProps) => {
   console.log(_id);
 
   return (
-    <div className="card bg-base-100 max-w-96 mx-auto shadow-xl">
+    <div className="card bg-base-100 max-w-96 max-h-96 m-4 mx-auto shadow-xl">
       <figure className="px-5 pt-5">
         <img src={images} alt={name} className="rounded-xl" />
       </figure>
