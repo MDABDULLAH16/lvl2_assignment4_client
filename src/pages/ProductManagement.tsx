@@ -15,7 +15,7 @@ const ProductManagement = () => {
     data: product,
     isLoading,
     refetch,
-  } = useGetAllProductQuery(undefined); // Get refetch function
+  } = useGetAllProductQuery(undefined);
 
   if (isLoading) {
     return (
@@ -33,7 +33,6 @@ const ProductManagement = () => {
       </div>
     );
   }
-
   const products: TProduct[] = product.data;
 
   return (
@@ -56,7 +55,7 @@ const ProductManagement = () => {
         </TableHeader>
         <TableBody>
           {products.map((item: TProduct) => (
-            <ProductTable key={item._id} item={item} refetch={refetch} /> // Pass refetch to ProductTable
+            <ProductTable key={item._id} item={item} refetch={refetch} />
           ))}
         </TableBody>
       </Table>

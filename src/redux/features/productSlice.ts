@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface ProductState {
+type TProduct = {
+  _id: string;
   name: string;
   price: number;
   category: string;
@@ -9,16 +10,14 @@ interface ProductState {
   stock: number;
   images: string;
   benefits: string;
-}
+};
 
-const initialState: ProductState = {
-  name: "",
-  price: 0,
-  category: "",
-  description: "",
-  stock: 0,
-  images: "",
-  benefits: "",
+type TInitialState = {
+  products: TProduct[];
+};
+
+const initialState: TInitialState = {
+  products: [],
 };
 
 const productSlice = createSlice({
@@ -30,6 +29,11 @@ const productSlice = createSlice({
     },
     clearProductDetails(state) {
       return initialState;
+    },
+    deleteProduct(state, action) {
+      state.products = state.products.filter(
+        (item) => item._id !== action.payload
+      );
     },
   },
 });
