@@ -7,6 +7,7 @@ import Home from "@/pages/Home";
 import ProductDetails from "@/pages/ProductDetails";
 import ProductManage from "@/pages/ProductManagement";
 import Products from "@/pages/Products";
+import ProductUpdate from "@/pages/UpdateProduct";
 import { createBrowserRouter } from "react-router-dom";
 
 export const router = createBrowserRouter([
@@ -34,6 +35,10 @@ export const router = createBrowserRouter([
       {
         path: "/product-details/:_id",
         element: <ProductDetails />,
+      },
+      {
+        path: "/update-product/:_id",
+        element: <ProductUpdate />,
       },
       {
         path: "/add-product",

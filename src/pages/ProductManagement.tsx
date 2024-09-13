@@ -8,6 +8,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useGetAllProductQuery } from "@/redux/api/api";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const ProductManagement = () => {
@@ -16,7 +17,10 @@ const ProductManagement = () => {
     isLoading,
     refetch,
   } = useGetAllProductQuery(undefined);
-
+  // Automatically refetch products when the page is visited
+  useEffect(() => {
+    refetch();
+  }, [refetch]);
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-40">

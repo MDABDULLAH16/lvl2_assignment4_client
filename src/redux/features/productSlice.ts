@@ -13,6 +13,7 @@ type TProduct = {
 };
 
 type TInitialState = {
+  [x: string]: string | undefined;
   products: TProduct[];
 };
 

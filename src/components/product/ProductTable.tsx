@@ -2,6 +2,7 @@ import { useState } from "react";
 import { TableCell, TableRow } from "@/components/ui/table";
 import { TProduct } from "../Types/ProductTypes";
 import { useDeleteProductMutation } from "@/redux/api/api";
+import { Link } from "react-router-dom";
 
 type ProductTableProps = {
   item: TProduct;
@@ -38,9 +39,12 @@ const ProductTable = ({ item, refetch }: ProductTableProps) => {
         </TableCell>
         <TableCell className="py-4 px-6 text-right">
           <div className="space-x-4">
-            <button className="btn btn-info bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full shadow-lg transition-transform duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-300">
-              Edit
-            </button>
+            <Link
+              to={`/update-product/${item._id}`}
+              className="btn btn-info bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full shadow-lg transition-transform duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-300"
+            >
+              Update
+            </Link>
             <button
               onClick={() => setIsModalOpen(true)}
               className="btn btn-error bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full shadow-lg transition-transform duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-300"
