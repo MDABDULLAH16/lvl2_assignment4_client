@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useCreateProductMutation } from "@/redux/api/api";
 
 const AddNewProduct = () => {
-  const [createProduct, { isLoading, isSuccess, error }] =
-    useCreateProductMutation();
+  const [createProduct, { isLoading, error }] = useCreateProductMutation();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -14,6 +13,9 @@ const AddNewProduct = () => {
     images: "",
     benefits: "",
   });
+
+  // Modal state
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -37,7 +39,7 @@ const AddNewProduct = () => {
 
     try {
       await createProduct(dataToSubmit).unwrap(); // Calls the createProduct mutation with the converted data
-      alert("Product created successfully!");
+      setShowSuccessModal(true); // Show the success modal
       setFormData({
         name: "",
         price: 0,
@@ -51,6 +53,20 @@ const AddNewProduct = () => {
       console.error("Failed to create product:", err);
     }
   };
+  // Close modal after a few seconds
+  useEffect(() => {
+    if (showSuccessModal) {
+      const timer = setTimeout(() => {
+        setShowSuccessModal(false);
+      }, 3000); // Show modal for 3 seconds
+
+      return () => clearTimeout(timer);
+    }
+  }, [showSuccessModal]);
+  // Close the modal
+  // const closeModal = () => {
+  //   setShowSuccessModal(false);
+  // };
 
   return (
     <div className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg mt-10">
@@ -171,9 +187,6 @@ const AddNewProduct = () => {
           >
             {isLoading ? "Creating..." : "Add Product"}
           </button>
-          {isSuccess && (
-            <p className="text-green-500 mt-4">Product created successfully!</p>
-          )}
           {error && (
             <p className="text-red-500 mt-4">
               Failed to create product. Please try again.
@@ -181,6 +194,25 @@ const AddNewProduct = () => {
           )}
         </div>
       </form>
+
+      {/* Success Modal */}
+      {/* Success Modal */}
+      {showSuccessModal && (
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg text-center max-w-md transform transition-all duration-500 ease-in-out scale-0 opacity-0 animate-scale-up-fade-in">
+            <h2 className="text-2xl font-semibold text-green-600">Success!</h2>
+            <p className="text-gray-700 mt-4">
+              Your product has been created successfully.
+            </p>
+            {/* <button
+              className="mt-6 bg-blue-500 text-white font-bold py-2 px-6 rounded-full hover:bg-blue-600 transition-transform duration-300 transform hover:scale-105"
+              onClick={closeModal}
+            >
+              Close
+            </button> */}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

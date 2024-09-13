@@ -11,7 +11,8 @@ export default {
   			'primary-gradient': 'linear-gradient(30deg,#DC02C3,#5C53F3)'
   		},
   		animation: {
-  			'fade-in': 'fadeIn 0.5s ease-in-out'
+  			'fade-in': 'fadeIn 0.5s ease-in-out',
+			'scale-up-fade-in': 'scale-up-fade-in 0.5s ease-in-out forwards',
   		},
   		keyframes: {
   			fadeIn: {
@@ -21,7 +22,11 @@ export default {
   				'100%': {
   					opacity: '1'
   				}
-  			}
+  			},
+			'scale-up-fade-in': {
+          '0%': { transform: 'scale(0.8)', opacity: '0' },
+          '100%': { transform: 'scale(1)', opacity: '1' },
+        },
   		},
   		borderRadius: {
   			lg: 'var(--radius)',

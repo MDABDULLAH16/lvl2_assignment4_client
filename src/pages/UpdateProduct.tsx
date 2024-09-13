@@ -244,18 +244,18 @@ const ProductUpdate: React.FC = () => {
 
       {/* Success Modal */}
       {showSuccessModal && (
-        <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg text-center">
-            <h2 className="text-xl font-bold text-green-600">
-              Product updated successfully!
-            </h2>
-            <p className="text-gray-700 mt-2">The product has been updated.</p>
-            <button
-              onClick={() => setShowSuccessModal(false)}
-              className="mt-4 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg text-center max-w-md transform transition-all duration-500 ease-in-out scale-0 opacity-0 animate-scale-up-fade-in">
+            <h2 className="text-2xl font-semibold text-green-600">Success!</h2>
+            <p className="text-gray-700 mt-4">
+              Your product has been Updated successfully.
+            </p>
+            {/* <button
+              className="mt-6 bg-blue-500 text-white font-bold py-2 px-6 rounded-full hover:bg-blue-600 transition-transform duration-300 transform hover:scale-105"
+              onClick={closeModal}
             >
               Close
-            </button>{" "}
+            </button> */}
           </div>
         </div>
       )}
