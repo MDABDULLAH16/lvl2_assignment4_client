@@ -12,6 +12,7 @@ import { addToCart } from "@/redux/features/cartSlice"; // Import addToCart acti
 
 const ProductDetail: React.FC = () => {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [alreadyInCartMessage, setAlreadyInCartMessage] = useState(false); // State for "already in cart" message
   const { _id } = useParams<{ _id: string }>();
   const dispatch = useAppDispatch();
   const { data: products, isLoading, isError } = useGetSingleProductQuery(_id!);
@@ -28,25 +29,27 @@ const ProductDetail: React.FC = () => {
   }, [product, dispatch]);
 
   const productDetails = useSelector((state: RootState) => state.product);
-  // console.log("detais", productDetails);
+  const cartItems = useSelector((state: RootState) => state.cart.items); // Get cart items from state
 
   const handleAddToCart = () => {
     if (productDetails) {
-      dispatch(
-        addToCart(
-          //   {
-          //   _id: productDetails._id,
-          //   name: productDetails.name,
-          //   price: productDetails.price,
-          //   image: productDetails.images, // Assuming there's an image field
-          // }
-          productDetails
-        )
+      // Check if the product is already in the cart
+      const isInCart = cartItems.some(
+        (item) => item._id === productDetails._id
       );
-      // alert(`${productDetails.name} has been added to your cart!`);
-      setShowSuccessModal(true);
+
+      if (isInCart) {
+        // Show "already in cart" message
+        setAlreadyInCartMessage(true);
+        setTimeout(() => setAlreadyInCartMessage(false), 2000); // Clear message after 3 seconds
+      } else {
+        // Add to cart if not already in cart
+        dispatch(addToCart(productDetails));
+        setShowSuccessModal(true);
+      }
     }
   };
+
   useEffect(() => {
     if (showSuccessModal) {
       const timer = setTimeout(() => {
@@ -60,6 +63,7 @@ const ProductDetail: React.FC = () => {
       return () => clearTimeout(timer);
     }
   }, [showSuccessModal]);
+
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-screen">
@@ -125,22 +129,32 @@ const ProductDetail: React.FC = () => {
           >
             Add to Cart
           </button>
+
+          {/* Display the "already in cart" message */}
+          {alreadyInCartMessage && (
+            <p className="text-red-500 mt-2">{alreadyInCartMessage}</p>
+          )}
         </div>
       </div>
+
       {/* Success Modal */}
       {showSuccessModal && (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
           <div className="bg-white p-6 rounded-lg shadow-lg text-center max-w-md transform transition-all duration-500 ease-in-out scale-0 opacity-0 animate-scale-up-fade-in">
             <h2 className="text-2xl font-semibold text-green-600">Success!</h2>
             <p className="text-gray-700 mt-4">
-              Your product has been created successfully.
+              Your product has been added to the cart successfully.
             </p>
-            {/* <button
-              className="mt-6 bg-blue-500 text-white font-bold py-2 px-6 rounded-full hover:bg-blue-600 transition-transform duration-300 transform hover:scale-105"
-              onClick={closeModal}
-            >
-              Close
-            </button> */}
+          </div>
+        </div>
+      )}
+      {alreadyInCartMessage && (
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg text-center max-w-md transform transition-all duration-500 ease-in-out scale-0 opacity-0 animate-scale-up-fade-in">
+            <h2 className="text-2xl font-semibold text-green-600">Hey!</h2>
+            <p className="text-gray-700 mt-4">
+              Your product has been Already added to the cart successfully.
+            </p>
           </div>
         </div>
       )}

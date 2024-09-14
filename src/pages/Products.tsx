@@ -11,6 +11,7 @@ const Products: React.FC = () => {
   const [categories, setCategories] = useState<string[]>([]);
   const [sortOrder, setSortOrder] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState<string>("");
 
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
@@ -28,16 +29,31 @@ const Products: React.FC = () => {
     data: searchResults,
     isLoading: searchLoading,
     isError: searchError,
-  } = useSearchByProductNameQuery(searchTerm || "");
+  } = useSearchByProductNameQuery(debouncedSearchTerm || "");
 
   // Combine search results with all products
-  const products = searchTerm ? searchResults?.data : allProducts?.data;
+  const products = debouncedSearchTerm
+    ? searchResults?.data
+    : allProducts?.data;
+
+  useEffect(() => {
+    // Debouncing logic
+    const handler = setTimeout(() => {
+      setDebouncedSearchTerm(searchTerm);
+    }, 300);
+
+    return () => {
+      clearTimeout(handler); // Clear the timeout if searchTerm changes
+    };
+  }, [searchTerm]);
 
   useEffect(() => {
     if (allProducts?.data) {
       const uniqueCategories = [
         ...new Set(
-          allProducts.data.map((product: TProductProps) => product.category)
+          allProducts.data.map(
+            (product: TProductProps) => product.category
+          ) as string[]
         ),
       ];
       setCategories(uniqueCategories);
