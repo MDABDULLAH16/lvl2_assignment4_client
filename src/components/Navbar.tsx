@@ -71,6 +71,12 @@ const Navbar: React.FC = () => {
             >
               About Us
             </Link>
+            <Link
+              to="/login"
+              className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+            >
+              Login
+            </Link>
           </div>
 
           {/* Mobile Menu Button (Hamburger icon) */}
@@ -146,6 +152,12 @@ const Navbar: React.FC = () => {
               className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
             >
               About Us
+            </Link>
+            <Link
+              to="/login"
+              className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            >
+              Login
             </Link>
           </div>
         </div>

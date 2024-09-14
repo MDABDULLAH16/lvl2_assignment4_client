@@ -4,9 +4,11 @@ import AddNewProduct from "@/pages/AddNewProduct";
 import Cart from "@/pages/Cart";
 import Checkout from "@/pages/Checkout";
 import Home from "@/pages/Home";
+import Login from "@/pages/Login";
 import ProductDetails from "@/pages/ProductDetails";
 import ProductManage from "@/pages/ProductManagement";
 import Products from "@/pages/Products";
+import SignUp from "@/pages/SignUp";
 import ProductUpdate from "@/pages/UpdateProduct";
 import { createBrowserRouter } from "react-router-dom";
 
@@ -55,6 +57,14 @@ export const router = createBrowserRouter([
       {
         path: "/about-us",
         element: <AboutUs />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/sign-up",
+        element: <SignUp />,
       },
     ],
   },

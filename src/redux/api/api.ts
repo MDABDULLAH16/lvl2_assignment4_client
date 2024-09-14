@@ -43,15 +43,30 @@ export const baseApi = createApi({
         method: "DELETE",
       }),
     }),
+    signUp: builder.mutation({
+      query: (userInfo) => ({
+        url: "/user/sign-up",
+        method: "POST",
+        body: userInfo,
+      }),
+    }),
+    getAllUser: builder.query({
+      query: () => ({
+        url: "/user",
+        method: "GET",
+      }),
+    }),
   }),
 });
 
 // Export hooks for usage in functional components
 export const {
   useGetAllProductQuery,
+  useGetAllUserQuery,
   useGetSingleProductQuery,
   useSearchByProductNameQuery,
   useUpdateProductMutation,
   useCreateProductMutation,
+  useSignUpMutation,
   useDeleteProductMutation, // Mutation hook for deleting product
 } = baseApi;
