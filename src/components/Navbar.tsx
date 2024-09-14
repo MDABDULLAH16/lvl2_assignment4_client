@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo2 from "../assets/logo2.png";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
+  const cartItems = useSelector((state: RootState) => state.cart.items);
   // Toggle mobile menu visibility
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -61,6 +63,9 @@ const Navbar: React.FC = () => {
               className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
             >
               Cart
+              <div className="badge badge-secondary ml-1">
+                {cartItems.length}
+              </div>
             </Link>
             <Link
               to="/checkout"

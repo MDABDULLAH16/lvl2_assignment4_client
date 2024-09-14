@@ -46,6 +46,7 @@ const ProductManagement = () => {
           <TableRow>
             <TableHead>Name</TableHead>
             <TableHead>Price</TableHead>
+            <TableHead>Stock</TableHead>
             <TableHead>Category</TableHead>
             <TableHead className="text-right">
               <Link

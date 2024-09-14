@@ -196,7 +196,6 @@ const AddNewProduct = () => {
       </form>
 
       {/* Success Modal */}
-      {/* Success Modal */}
       {showSuccessModal && (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
           <div className="bg-white p-6 rounded-lg shadow-lg text-center max-w-md transform transition-all duration-500 ease-in-out scale-0 opacity-0 animate-scale-up-fade-in">

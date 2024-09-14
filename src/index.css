@@ -1,6 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@keyframes bounce-slow {
+  0%, 100% {
+    transform: translateY(-5%);
+  }
+  50% {
+    transform: translateY(0);
+  }
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 2s infinite;
+}
 .gallery-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(0, 1fr));

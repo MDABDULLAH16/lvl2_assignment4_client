@@ -34,6 +34,7 @@ const ProductTable = ({ item, refetch }: ProductTableProps) => {
         <TableCell className="py-4 px-6 text-gray-600">
           ${item.price.toFixed(2)}
         </TableCell>
+        <TableCell className="py-4 px-6 text-gray-600">${item.stock}</TableCell>
         <TableCell className="py-4 px-6 text-gray-600">
           {item.category}
         </TableCell>

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
@@ -11,6 +11,7 @@ import { useAppDispatch } from "@/redux/hooks";
 import { addToCart } from "@/redux/features/cartSlice"; // Import addToCart action
 
 const ProductDetail: React.FC = () => {
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const { _id } = useParams<{ _id: string }>();
   const dispatch = useAppDispatch();
   const { data: products, isLoading, isError } = useGetSingleProductQuery(_id!);
@@ -42,10 +43,23 @@ const ProductDetail: React.FC = () => {
           productDetails
         )
       );
-      alert(`${productDetails.name} has been added to your cart!`);
+      // alert(`${productDetails.name} has been added to your cart!`);
+      setShowSuccessModal(true);
     }
   };
+  useEffect(() => {
+    if (showSuccessModal) {
+      const timer = setTimeout(() => {
+        setShowSuccessModal(false);
+        // navigate("/cart");
 
+        // Navigate to the cart page after 3 seconds
+      }, 3000); // Show modal for 3 seconds
+
+      // Clean up the timer on component unmount
+      return () => clearTimeout(timer);
+    }
+  }, [showSuccessModal]);
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-screen">
@@ -113,6 +127,23 @@ const ProductDetail: React.FC = () => {
           </button>
         </div>
       </div>
+      {/* Success Modal */}
+      {showSuccessModal && (
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg text-center max-w-md transform transition-all duration-500 ease-in-out scale-0 opacity-0 animate-scale-up-fade-in">
+            <h2 className="text-2xl font-semibold text-green-600">Success!</h2>
+            <p className="text-gray-700 mt-4">
+              Your product has been created successfully.
+            </p>
+            {/* <button
+              className="mt-6 bg-blue-500 text-white font-bold py-2 px-6 rounded-full hover:bg-blue-600 transition-transform duration-300 transform hover:scale-105"
+              onClick={closeModal}
+            >
+              Close
+            </button> */}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
