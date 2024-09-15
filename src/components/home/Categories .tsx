@@ -70,7 +70,7 @@ const Categories: React.FC = () => {
       <header className="bg-white shadow-md py-6 mb-4">
         <div className="container mx-auto px-4">
           <h1 className="text-center md:font-extrabold md:text-4xl mt-2 text-2xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600 tracking-wide">
-            Choose Your Category
+            Choice Your Favorite Category
           </h1>
         </div>
       </header>
