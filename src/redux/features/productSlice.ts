@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type TProduct = {
@@ -13,8 +13,8 @@ type TProduct = {
 };
 
 type TInitialState = {
-  [x: string]: string | undefined;
-  products: TProduct[];
+  products: TProduct[]; // Explicitly define the 'products' property
+  [x: string]: any; // Allow additional properties of any type if needed
 };
 
 const initialState: TInitialState = {
@@ -25,13 +25,13 @@ const productSlice = createSlice({
   name: "product",
   initialState,
   reducers: {
-    setProductDetails(state, action: PayloadAction<ProductState>) {
+    setProductDetails(_state, action: PayloadAction<TInitialState>) {
       return action.payload;
     },
-    clearProductDetails(state) {
+    clearProductDetails() {
       return initialState;
     },
-    deleteProduct(state, action) {
+    deleteProduct(state, action: PayloadAction<string>) {
       state.products = state.products.filter(
         (item) => item._id !== action.payload
       );
@@ -39,5 +39,6 @@ const productSlice = createSlice({
   },
 });
 
-export const { setProductDetails, clearProductDetails } = productSlice.actions;
+export const { setProductDetails, clearProductDetails, deleteProduct } =
+  productSlice.actions;
 export default productSlice.reducer;

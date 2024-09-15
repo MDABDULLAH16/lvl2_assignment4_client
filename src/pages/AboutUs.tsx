@@ -7,16 +7,16 @@ const AboutUs = () => {
 
       <section className="mb-12 text-center relative z-10">
         <h1 className="text-4xl font-bold text-gray-800 mb-4 transform transition-transform duration-500 hover:scale-105">
-          About Us
+          Welcome to FitGearHub
         </h1>
         <p className="text-lg text-gray-700 max-w-3xl mx-auto">
-          Welcome to FitGearHub, your go-to destination for top-quality fitness
-          equipment and accessories. Founded in 2020, we are dedicated to
-          helping you achieve your fitness goals with our range of premium
-          products. Our mission is to provide innovative solutions that enhance
-          your workout experience and promote a healthier lifestyle. Our vision
-          is to be the leading provider of fitness solutions, making
-          high-quality equipment accessible to everyone.
+          your go-to destination for top-quality fitness equipment and
+          accessories. Founded in 2020, we are dedicated to helping you achieve
+          your fitness goals with our range of premium products. Our mission is
+          to provide innovative solutions that enhance your workout experience
+          and promote a healthier lifestyle. Our vision is to be the leading
+          provider of fitness solutions, making high-quality equipment
+          accessible to everyone.
         </p>
       </section>
 

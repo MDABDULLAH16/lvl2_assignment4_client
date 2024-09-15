@@ -48,7 +48,7 @@ const ProductTable = ({ item, refetch }: ProductTableProps) => {
             </Link>
             <button
               onClick={() => setIsModalOpen(true)}
-              className="btn btn-error bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full shadow-lg transition-transform duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-300"
+              className="btn btn-error bg-red-500 hover:bg-red-600 text-white font-bold py-2 sm:px-6  rounded-full shadow-lg transition-transform duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-300"
             >
               Delete
             </button>

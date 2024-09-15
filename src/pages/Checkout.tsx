@@ -141,44 +141,83 @@ const CheckoutPage: React.FC = () => {
       <h1 className="text-3xl font-bold mb-6">Checkout</h1>
 
       {/* User Details Form */}
-      <div className="space-y-4">
-        <input
-          type="text"
-          name="name"
-          value={userDetails.name}
-          onChange={handleInputChange}
-          placeholder="Full Name"
-          className="w-full p-2 border border-gray-300 rounded-lg"
-        />
-        <input
-          type="email"
-          name="email"
-          value={userDetails.email}
-          onChange={handleInputChange}
-          placeholder="Email"
-          className="w-full p-2 border border-gray-300 rounded-lg"
-        />
-        <input
-          type="text"
-          name="phone"
-          value={userDetails.phone}
-          onChange={handleInputChange}
-          placeholder="Phone Number"
-          className="w-full p-2 border border-gray-300 rounded-lg"
-        />
-        <textarea
-          name="address"
-          value={userDetails.address}
-          onChange={handleInputChange}
-          placeholder="Delivery Address"
-          className="w-full p-2 border border-gray-300 rounded-lg"
-        ></textarea>
+      <div className="space-y-6">
+        <div>
+          <label
+            htmlFor="name"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Full Name
+          </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={userDetails.name}
+            onChange={handleInputChange}
+            placeholder="Full Name"
+            className="mt-1 w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+
+        <div>
+          <label
+            htmlFor="email"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Email
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={userDetails.email}
+            onChange={handleInputChange}
+            placeholder="Email"
+            className="mt-1 w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+
+        <div>
+          <label
+            htmlFor="phone"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Phone Number
+          </label>
+          <input
+            type="text"
+            id="phone"
+            name="phone"
+            value={userDetails.phone}
+            onChange={handleInputChange}
+            placeholder="Phone Number"
+            className="mt-1 w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+
+        <div>
+          <label
+            htmlFor="address"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Delivery Address
+          </label>
+          <textarea
+            id="address"
+            name="address"
+            value={userDetails.address}
+            onChange={handleInputChange}
+            placeholder="Delivery Address"
+            className="mt-1 w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          ></textarea>
+        </div>
       </div>
 
       {/* Payment Methods */}
-      <div className="mt-6">
-        <h2 className="text-xl font-semibold">Payment Method</h2>
-        <div className="flex items-center mt-2">
+      <div className="mt-8">
+        <h2 className="text-xl font-semibold mb-4">Payment Method</h2>
+        <div className="flex items-center mb-2">
           <input
             type="radio"
             id="cod"
@@ -192,7 +231,7 @@ const CheckoutPage: React.FC = () => {
             Cash on Delivery
           </label>
         </div>
-        <div className="flex items-center mt-2">
+        <div className="flex items-center">
           <input
             type="radio"
             id="stripe"
@@ -209,9 +248,9 @@ const CheckoutPage: React.FC = () => {
       </div>
 
       {/* Order Summary */}
-      <div className="mt-6">
-        <h2 className="text-xl font-semibold">Order Summary</h2>
-        <ul className="divide-y divide-gray-200">
+      <div className="mt-8">
+        <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
+        <ul className="divide-y divide-gray-200 mb-4">
           {cartItems.map((item) => (
             <li key={item._id} className="flex justify-between py-4">
               <div>
@@ -224,7 +263,7 @@ const CheckoutPage: React.FC = () => {
             </li>
           ))}
         </ul>
-        <div className="mt-4 text-right">
+        <div className="text-right">
           <h3 className="text-xl font-semibold">
             Total: ${totalAmount.toFixed(2)}
           </h3>

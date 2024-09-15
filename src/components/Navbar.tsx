@@ -59,24 +59,24 @@ const Navbar: React.FC = () => {
                 {cartItems.length}
               </div>
             </Link>
-            <Link
+            {/* <Link
               to="/checkout"
               className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
             >
               Checkout
-            </Link>
+            </Link> */}
             <Link
               to="/about-us"
               className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
             >
               About Us
             </Link>
-            <Link
+            {/* <Link
               to="/login"
               className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
             >
               Login
-            </Link>
+            </Link> */}
           </div>
 
           {/* Mobile Menu Button (Hamburger icon) */}
@@ -141,24 +141,24 @@ const Navbar: React.FC = () => {
             >
               Cart
             </Link>
-            <Link
+            {/* <Link
               to="/checkout"
               className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
             >
               Checkout
-            </Link>
+            </Link> */}
             <Link
               to="/about-us"
               className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
             >
               About Us
             </Link>
-            <Link
+            {/* <Link
               to="/login"
               className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
             >
               Login
-            </Link>
+            </Link> */}
           </div>
         </div>
       )}

@@ -87,17 +87,17 @@ const Footer = () => {
           <h6 className="text-lg font-semibold mb-3">Legal</h6>
           <ul className="space-y-2">
             <li>
-              <a href="/terms" className="hover:text-gray-300">
+              <a href="/about-us" className="hover:text-gray-300">
                 Terms of Use
               </a>
             </li>
             <li>
-              <a href="/privacy" className="hover:text-gray-300">
+              <a href="/about-us" className="hover:text-gray-300">
                 Privacy Policy
               </a>
             </li>
             <li>
-              <a href="/cookies" className="hover:text-gray-300">
+              <a href="/about-us" className="hover:text-gray-300">
                 Cookie Policy
               </a>
             </li>

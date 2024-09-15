@@ -10,6 +10,16 @@ import {
 import { useAppDispatch } from "@/redux/hooks";
 import { addToCart } from "@/redux/features/cartSlice"; // Import addToCart action
 
+// Update the CartItem type to include 'stock'
+interface CartItem {
+  _id: string;
+  name: string;
+  price: number;
+  images: string;
+  quantity: number;
+  stock: number; // Include stock here
+}
+
 const ProductDetail: React.FC = () => {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [alreadyInCartMessage, setAlreadyInCartMessage] = useState(false); // State for "already in cart" message
@@ -31,6 +41,18 @@ const ProductDetail: React.FC = () => {
   const productDetails = useSelector((state: RootState) => state.product);
   const cartItems = useSelector((state: RootState) => state.cart.items); // Get cart items from state
 
+  // Helper function to map productDetails to CartItem
+  const mapProductToCartItem = (product: typeof productDetails): CartItem => {
+    return {
+      _id: product._id,
+      name: product.name,
+      price: product.price,
+      images: product.images,
+      quantity: 1, // Default quantity for new cart items
+      stock: product.stock, // Include stock here
+    };
+  };
+
   const handleAddToCart = () => {
     if (productDetails) {
       // Check if the product is already in the cart
@@ -41,10 +63,11 @@ const ProductDetail: React.FC = () => {
       if (isInCart) {
         // Show "already in cart" message
         setAlreadyInCartMessage(true);
-        setTimeout(() => setAlreadyInCartMessage(false), 2000); // Clear message after 3 seconds
+        setTimeout(() => setAlreadyInCartMessage(false), 1000); // Clear message after 3 seconds
       } else {
         // Add to cart if not already in cart
-        dispatch(addToCart(productDetails));
+        const cartItem = mapProductToCartItem(productDetails);
+        dispatch(addToCart(cartItem));
         setShowSuccessModal(true);
       }
     }
@@ -54,8 +77,6 @@ const ProductDetail: React.FC = () => {
     if (showSuccessModal) {
       const timer = setTimeout(() => {
         setShowSuccessModal(false);
-        // navigate("/cart");
-
         // Navigate to the cart page after 3 seconds
       }, 3000); // Show modal for 3 seconds
 
@@ -102,11 +123,12 @@ const ProductDetail: React.FC = () => {
             {productDetails.name}
           </h1>
           <p className="text-xl font-semibold text-gray-700 mb-4">
-            ${productDetails.price}
+            $ {productDetails.price}
           </p>
 
           <p className="text-sm text-gray-600 mb-2">
-            Stock: <span className="font-medium">{productDetails.stock}</span>
+            Available Stock:{" "}
+            <span className="font-medium">{productDetails.stock}</span>
           </p>
           <p className="text-sm text-gray-600 mb-2">
             Category:{" "}
@@ -118,9 +140,11 @@ const ProductDetail: React.FC = () => {
           </p>
 
           <ul className="mt-4 list-disc list-inside text-gray-600">
-            {productDetails.benefits?.split(",").map((benefit, index) => (
-              <li key={index}>{benefit}</li>
-            ))}
+            {productDetails.benefits
+              ?.split(",")
+              .map((benefit: string, index: number) => (
+                <li key={index}>{benefit}</li>
+              ))}
           </ul>
 
           <button

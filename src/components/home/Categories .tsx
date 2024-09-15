@@ -46,7 +46,7 @@ const Categories: React.FC = () => {
   };
 
   // Group products by category and collect their image URLs
-  const categoryImages = products?.data
+  const categoryImages: [string, string[]][] = products?.data
     ? Array.from(
         products.data.reduce((acc: Map<string, string[]>, product: Product) => {
           if (!acc.has(product.category)) {
@@ -77,9 +77,9 @@ const Categories: React.FC = () => {
 
       {/* Category Section */}
       <section className="container mx-auto px-4 py-8">
-        <div className="grid gap-8  md:grid-cols-3 sm:grid-cols-2">
-          {categoryImages?.length > 0 ? (
-            categoryImages?.map(([category, images], index) => (
+        <div className="grid gap-8 md:grid-cols-3 sm:grid-cols-2">
+          {categoryImages.length > 0 ? (
+            categoryImages.map(([category, images], index) => (
               <CategoryCard
                 key={index}
                 title={category}
