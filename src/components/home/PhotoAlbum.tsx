@@ -30,7 +30,7 @@ const PhotoAlbum = () => {
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
-      <h1 className="text-5xl font-extrabold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 animate-gradient-text shadow-lg p-4 rounded-lg">
+      <h1 className="md:text-5xl lg:text-5xl md:font-extrabold lg:font-extrabold text-center md:mb-12 font-semibold text-2xl  mb-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 animate-gradient-text shadow-lg p-4 rounded-lg">
         Explore Our Stunning Product Gallery
       </h1>
       <div className="columns-2 sm:columns-3 md:columns-4 lg:columns-5 gap-4">

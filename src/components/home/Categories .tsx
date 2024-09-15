@@ -65,18 +65,18 @@ const Categories: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-200">
+    <div className="min-h-screen mb-0 bg-gradient-to-b from-gray-50 to-gray-200">
       {/* Header */}
       <header className="bg-white shadow-md py-6 mb-4">
         <div className="container mx-auto px-4">
-          <h1 className="text-center font-extrabold text-4xl sm:text-5xl text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600 tracking-wide">
+          <h1 className="text-center md:font-extrabold md:text-4xl mt-2 text-2xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600 tracking-wide">
             Choose Your Category
           </h1>
         </div>
       </header>
 
       {/* Category Section */}
-      <section className="container mx-auto px-4 py-8">
+      <section className="container mx-auto px-4 py-4">
         <div className="grid gap-8 md:grid-cols-3 sm:grid-cols-2">
           {categoryImages.length > 0 ? (
             categoryImages.map(([category, images], index) => (

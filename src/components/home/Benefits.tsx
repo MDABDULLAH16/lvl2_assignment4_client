@@ -32,9 +32,11 @@ const Benefits = () => {
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
-      <h1 className="text-4xl font-extrabold text-center mb-12">
-        Product Benefits
-      </h1>
+      <div className="container bg-gray-100 mx-auto px-4">
+        <h1 className="md:text-5xl lg:text-5xl md:font-extrabold lg:font-extrabold text-center md:mb-12  mb-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 animate-gradient-text shadow-lg p-4 rounded-lg">
+          Product Benefits
+        </h1>
+      </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {displayedProducts?.map((product: TProduct) => (

@@ -21,9 +21,9 @@ const FeaturedCard: React.FC<TProductProps> = ({
       <div className="p-4">
         <h2 className="font-bold text-xl text-gray-800 mb-2">{name}</h2>
         <p className="text-gray-600 mb-4 truncate">{description}</p>
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center space-x-1">
           <span className="text-lg font-semibold text-blue-500">${price}</span>
-          <span className="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-lg">
+          <span className="bg-gray-200 text-gray-800 text-sm px-3 py-1 rounded-lg">
             {category}
           </span>
           <div className="card-actions">
@@ -31,7 +31,7 @@ const FeaturedCard: React.FC<TProductProps> = ({
               to={`/product-details/${_id}`}
               className="bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white  md:py-2 px-2 py-1 md:px-3 rounded-lg shadow-inner focus:outline-none transition ease-in-out duration-150"
             >
-              See Details
+              Details
             </Link>
           </div>
         </div>

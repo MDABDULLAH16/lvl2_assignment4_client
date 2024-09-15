@@ -45,12 +45,18 @@ const FeatureProduct: React.FC = () => {
   };
 
   return (
-    <div className="bg-gray-100 py-14">
-      <div className="container mx-auto px-6">
+    <div className="bg-gray-100 py-4">
+      <div className="container bg-gray-100 mx-auto px-6">
         {/* Section Heading */}
-        <h2 className="text-4xl font-bold text-center text-gray-800 mb-12">
-          Featured Products
-        </h2>
+
+        {/* <div className="container mx-auto px-4">
+            <h1 className="text-center mt-0 md:font-extrabold md:text-4xl text-2xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600 tracking-wide">
+              Featured Products
+            </h1>
+          </div> */}
+        <h1 className="md:text-5xl lg:text-5xl md:font-extrabold lg:font-extrabold text-center md:mb-12  mb-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 animate-gradient-text shadow-lg p-4 rounded-lg">
+          Featured Product
+        </h1>
 
         {/* Featured Products Grid */}
         <div className="grid gap-8 lg:grid-cols-3 sm:grid-cols-2">
