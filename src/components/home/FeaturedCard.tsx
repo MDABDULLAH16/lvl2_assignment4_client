@@ -29,7 +29,7 @@ const FeaturedCard: React.FC<TProductProps> = ({
           <div className="card-actions">
             <Link
               to={`/product-details/${_id}`}
-              className="bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white  py-2 px-3 rounded-lg shadow-inner focus:outline-none transition ease-in-out duration-150"
+              className="bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white  md:py-2 px-2 py-1 md:px-3 rounded-lg shadow-inner focus:outline-none transition ease-in-out duration-150"
             >
               See Details
             </Link>
