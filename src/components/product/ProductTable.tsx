@@ -28,27 +28,25 @@ const ProductTable = ({ item, refetch }: ProductTableProps) => {
   return (
     <>
       <TableRow className="border-b hover:bg-gray-100 transition-colors duration-300">
-        <TableCell className="font-medium py-4 px-6 text-gray-700">
+        <TableCell className="font-medium   text-gray-700">
           {item.name}
         </TableCell>
-        <TableCell className="py-4 px-6 text-gray-600">
+        <TableCell className="  text-gray-600">
           ${item.price.toFixed(2)}
         </TableCell>
-        <TableCell className="py-4 px-6 text-gray-600">${item.stock}</TableCell>
-        <TableCell className="py-4 px-6 text-gray-600">
-          {item.category}
-        </TableCell>
-        <TableCell className="py-4 px-6 text-right">
-          <div className="space-x-4">
+        <TableCell className=" text-gray-600">${item.stock}</TableCell>
+        <TableCell className="  text-gray-600">{item.category}</TableCell>
+        <TableCell className="  text-right">
+          <div className="space-x-2">
             <Link
               to={`/update-product/${item._id}`}
-              className="btn btn-info bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full shadow-lg transition-transform duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-300"
+              className="btn btn-info bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 md:px-6 rounded-full shadow-lg transition-transform duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-300"
             >
               Update
             </Link>
             <button
               onClick={() => setIsModalOpen(true)}
-              className="btn btn-error bg-red-500 hover:bg-red-600 text-white font-bold py-2 sm:px-6  rounded-full shadow-lg transition-transform duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-300"
+              className="btn btn-error bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-5 rounded-full shadow-lg transition-transform duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-300"
             >
               Delete
             </button>

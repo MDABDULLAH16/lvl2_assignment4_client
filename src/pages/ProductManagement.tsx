@@ -51,7 +51,7 @@ const ProductManagement = () => {
             <TableHead className="text-right">
               <Link
                 to="/add-product"
-                className="btn  btn-primary bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 my-2 px-6 rounded-full shadow-lg transition-transform duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-300"
+                className="btn  btn-primary bg-blue-500 hover:bg-blue-600 text-white md:font-bold py-3 my-2 md:px-6 rounded-full shadow-lg transition-transform duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-300"
               >
                 Add New Product
               </Link>
