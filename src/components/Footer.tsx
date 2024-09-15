@@ -5,7 +5,7 @@ import { FaFacebook, FaLinkedin, FaYoutube } from "react-icons/fa";
 const Footer = () => {
   return (
     <footer className="bg-gray-800 text-white py-10 px-6">
-      <div className="container mx-auto grid md:grid-cols-4 sm:grid-cols-2  w-full">
+      <div className="container mx-auto grid md:grid-cols-4 grid-cols-2 gap-4 space-x-8  w-full">
         {/* Footer Logo and Info */}
         <div className="w-full mx-auto mb-6 md:mb-0">
           <img src={logo2} alt="FitGearHub" className="w-32 mb-4" />

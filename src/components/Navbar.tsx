@@ -140,6 +140,9 @@ const Navbar: React.FC = () => {
               className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
             >
               Cart
+              <div className="badge badge-secondary ml-1">
+                {cartItems.length}
+              </div>
             </Link>
             {/* <Link
               to="/checkout"

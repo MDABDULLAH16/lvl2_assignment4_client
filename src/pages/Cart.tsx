@@ -135,8 +135,8 @@ const CartPage: React.FC = () => {
               </div>
             </div>
 
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center">
+            <div className="flex flex-col md:flex-row md:space-x-4  space-y-2 items-center ">
+              <div className="flex md:mt-2 items-center">
                 {/* Decrease Quantity */}
                 <button
                   onClick={() => handleDecreaseQuantity(item._id)}

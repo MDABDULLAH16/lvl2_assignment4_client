@@ -113,7 +113,7 @@ const Products: React.FC = () => {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           placeholder="Search products by name"
-          className="p-3 border w-2/4  border-gray-300 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200"
+          className="p-3 border sm:w-2/4 w-full  border-gray-300 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200"
         />
 
         {/* Category Filter Dropdown */}
