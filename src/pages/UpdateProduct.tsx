@@ -28,7 +28,12 @@ const ProductUpdate: React.FC = () => {
   const dispatch = useAppDispatch();
 
   // Fetch single product data
-  const { data: products, isLoading, isError } = useGetSingleProductQuery(_id!);
+  const {
+    data: products,
+    isLoading,
+    isError,
+    refetch,
+  } = useGetSingleProductQuery(_id!);
   const product = products?.data;
 
   // Define mutation hook for updating the product
@@ -87,16 +92,16 @@ const ProductUpdate: React.FC = () => {
   useEffect(() => {
     if (isSuccess) {
       setShowSuccessModal(true);
+      refetch();
     }
-  }, [isSuccess]);
+  }, [isSuccess, refetch]);
 
   // Close modal after a few seconds
   useEffect(() => {
     if (showSuccessModal) {
       const timer = setTimeout(() => {
         setShowSuccessModal(false);
-      }, 3000); // Show modal for 3 seconds
-
+      }, 2000); // Show modal for 3 seconds
       return () => clearTimeout(timer);
     }
   }, [showSuccessModal]);
